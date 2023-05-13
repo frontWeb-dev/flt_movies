@@ -1,7 +1,6 @@
 import 'package:flt_movies/models/movie_thumb_model.dart';
 import 'package:flt_movies/services/api_service.dart';
-import 'package:flt_movies/widgets/widget_movie_large.dart';
-import 'package:flt_movies/widgets/widget_movie_small.dart';
+import 'package:flt_movies/widgets/widget_movie_thumb.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -38,7 +37,7 @@ class HomeScreen extends StatelessWidget {
                                   fontSize: 20, fontWeight: FontWeight.w600),
                             ),
                             SizedBox(
-                              height: 200,
+                              height: 230,
                               child: popularMovie(snapshot),
                             ),
                           ],
@@ -126,7 +125,8 @@ class HomeScreen extends StatelessWidget {
       itemCount: snapshot.data!.length,
       itemBuilder: (context, index) {
         final movie = snapshot.data![index];
-        return MovieLarge(thumb: movie.image, id: movie.id);
+        return MovieThumb(
+            thumb: movie.image, id: movie.id, title: movie.title, large: true);
       },
       separatorBuilder: (context, index) => const SizedBox(width: 20),
     );
@@ -139,7 +139,8 @@ class HomeScreen extends StatelessWidget {
       itemCount: snapshot.data!.length,
       itemBuilder: (context, index) {
         final movie = snapshot.data![index];
-        return MovieSmall(title: movie.title, thumb: movie.image, id: movie.id);
+        return MovieThumb(
+            title: movie.title, thumb: movie.image, id: movie.id, large: false);
       },
       separatorBuilder: (context, index) => const SizedBox(width: 20),
     );

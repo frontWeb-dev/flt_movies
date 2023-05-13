@@ -1,18 +1,32 @@
+import 'package:flt_movies/screens/detail_screen.dart';
 import 'package:flutter/material.dart';
 
-class MovieSmall extends StatelessWidget {
+class MovieThumb extends StatelessWidget {
   final String thumb, title;
   final int id;
+  final bool large;
 
-  const MovieSmall(
-      {super.key, required this.thumb, required this.id, required this.title});
+  const MovieThumb(
+      {super.key,
+      required this.thumb,
+      required this.id,
+      required this.title,
+      required this.large});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) =>
+                DetailScreen(id: id, title: title, thumb: thumb),
+          ),
+        );
+      },
       child: SizedBox(
-        width: 150,
+        width: large ? 300 : 150,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -29,20 +43,22 @@ class MovieSmall extends StatelessWidget {
                   ]),
               child: Image(
                 image: NetworkImage("https://image.tmdb.org/t/p/w500$thumb"),
-                width: 150,
-                height: 150,
+                width: large ? 300 : 150,
+                height: large ? 180 : 150,
                 fit: BoxFit.cover,
               ),
             ),
             const SizedBox(height: 10),
-            Text(
-              title,
-              softWrap: true,
-              style: const TextStyle(
-                fontWeight: FontWeight.w600,
-                fontSize: 16,
-              ),
-            ),
+            !large
+                ? Text(
+                    title,
+                    softWrap: true,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontSize: 16,
+                    ),
+                  )
+                : const Text(""),
           ],
         ),
       ),
