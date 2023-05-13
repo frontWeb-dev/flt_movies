@@ -37,7 +37,7 @@ class HomeScreen extends StatelessWidget {
                                   fontSize: 20, fontWeight: FontWeight.w600),
                             ),
                             SizedBox(
-                              height: 230,
+                              height: 240,
                               child: popularMovie(snapshot),
                             ),
                           ],
@@ -67,7 +67,7 @@ class HomeScreen extends StatelessWidget {
                                   fontSize: 20, fontWeight: FontWeight.w600),
                             ),
                             SizedBox(
-                              height: 250,
+                              height: 240,
                               child: nowPlayingMovie(snapshot),
                             ),
                           ],
@@ -97,7 +97,7 @@ class HomeScreen extends StatelessWidget {
                                   fontSize: 20, fontWeight: FontWeight.w600),
                             ),
                             SizedBox(
-                              height: 250,
+                              height: 240,
                               child: nowPlayingMovie(snapshot),
                             ),
                           ],

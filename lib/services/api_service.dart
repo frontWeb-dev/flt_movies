@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flt_movies/models/movie_detail_model.dart';
 import 'package:flt_movies/models/movie_thumb_model.dart';
 import 'package:http/http.dart' as http;
 
@@ -67,6 +68,18 @@ class ApiService {
       }
 
       return comingSoonMovies;
+    }
+
+    throw Error();
+  }
+
+  static Future<MovieDetailModeal> getDetailInfo(int id) async {
+    final url = Uri.parse('$baseUrl/movie?id=$id');
+    final response = await http.get(url);
+
+    if (response.statusCode == 200) {
+      final infos = jsonDecode(response.body);
+      return MovieDetailModeal.fromJson(infos);
     }
 
     throw Error();
